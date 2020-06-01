@@ -1,4 +1,5 @@
-import mysql.connector as mariadb
+import pymysql as mariadb
+from pymysql.constants import CLIENT
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
@@ -9,7 +10,8 @@ def get_db():
         g.db = mariadb.connect(
             user='root', 
             password='123456', 
-            database='drivingschool'
+            database='drivingschool',
+            client_flag=CLIENT.MULTI_STATEMENTS
         )
     return g.db
 
@@ -26,8 +28,9 @@ def init_db():
     cursor = db.cursor()
 
     with current_app.open_resource('db/schema.ddl.sql') as f:
-        cursor.execute(f.read().decode('utf8'), multi=True)
+        cursor.execute(f.read().decode('utf8'))
     
+    db.commit()
     cursor.close()
 
 
@@ -36,8 +39,9 @@ def fill_db():
     cursor = db.cursor()
 
     with current_app.open_resource('db/data.dump.sql') as f:
-        cursor.execute(f.read().decode('utf8'), multi=True)
+        cursor.execute(f.read().decode('utf8'))
     
+    db.commit()
     cursor.close()
 
 

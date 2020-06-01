@@ -11,14 +11,15 @@ def index():
     db = get_db()
     cursor = db.cursor()
     cursor.execute(
-        'SELECT C.Surname, C.Name, L.Name, R.ExamStatus, R.StartDate '
+        'SELECT C.ID, C.Surname, C.Name, L.Name, R.ExamStatus, R.StartDate '
         'FROM Client AS C '
         'LEFT JOIN (License AS L, Registration AS R) ON (L.ID = R.LicenseID AND C.ID = R.ClientID)'
         )
 
     data = []
-    for (name, surname, license, exam, date) in cursor:
+    for (id, name, surname, license, exam, date) in cursor:
         data.append((
+            id,
             name, 
             surname, 
             license if license is not None else '-', 

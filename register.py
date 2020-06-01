@@ -11,7 +11,6 @@ def index():
     db = get_db()
     cursor = db.cursor()
 
-    formz = []
     if request.method == 'POST':
         name = request.form['name']
         surname = request.form['surname']
@@ -23,6 +22,7 @@ def index():
             'VALUES (%s, %s, %s)',
             (name, surname, cf)
         )
+        db.commit()
 
 
     cursor.execute(
