@@ -19,13 +19,13 @@ def close_db(e=None):
 
     if db is not None:
         db.close()
-        
 
-def init_db():
+
+def execute_file_db(file_path):
     db = get_db()
     cursor = db.cursor()
 
-    with current_app.open_resource('db/schema.ddl.sql') as f:
+    with current_app.open_resource(file_path) as f:
         cursor.execute(f.read().decode('utf8'), multi=True)
 
 
@@ -33,10 +33,19 @@ def init_db():
 @with_appcontext
 def init_db_command():
     """Clear the existing data and create new tables."""
-    init_db()
+    execute_file_db('db/schema.ddl.sql')
     click.echo('Database initialized.')
+
+
+@click.command('fill-db')
+@with_appcontext
+def fill_db_command():
+    """Insert fake data, develop purpose."""
+    execute_file_db('db/data.dump.sql')
+    click.echo('Database filled.')
 
 
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(fill_db_command)
