@@ -15,4 +15,7 @@ def create_app():
     from . import subscribers
     app.register_blueprint(subscribers.bp)
 
+    from . import register
+    app.register_blueprint(register.bp)
+
     return app
