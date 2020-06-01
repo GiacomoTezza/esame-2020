@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Profilo{% endblock %}
+
+{% block content %}
+{% if isErrorOccurred %}
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <div class="alert alert-danger" role="alert">
+            Inserimento non valido, utente già iscritto al corso
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-4">{{ p_data[0][1] + " " + p_data[0][2] }}</h1>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center" scope="col">Corso</th>
+                    <th class="text-center" scope="col">Stato Esame</th>
+                    <th class="text-center" scope="col">Data Iscrizione</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data_len > 0 %}
+                {% for registration in data %}
+                <tr>
+                    <td class="text-center">{{ registration[0] }}</td>
+                    <td class="text-center">{{ registration[2] }}</td>
+                    <td class="text-center">{{ registration[1] }}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td class="text-center">-</td>
+                    <td class="text-center">-</td>
+                    <td class="text-center">-</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-4" style="font-size: 2rem;">Associa ad un nuovo corso</h1>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <form method="post">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="license">Corso per patente</label>
+                    <select name="license" id="license" class="form-control">
+                        {% for license in l_data %}
+                        <option value="{{ license[0] }}">{{ license[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Conferma</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

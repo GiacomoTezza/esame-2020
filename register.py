@@ -23,15 +23,6 @@ def index():
             (name, surname, cf)
         )
         db.commit()
+        return redirect('/subscribers')
 
-
-    cursor.execute(
-        'SELECT ID, Name '
-        'FROM License'
-    )
-
-    data = []
-    for (id, license) in cursor:
-        data.append((id, license))
-
-    return render_template('register/index.html', data=data)
+    return render_template('register/index.html')

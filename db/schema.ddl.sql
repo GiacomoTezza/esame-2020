@@ -26,7 +26,7 @@ CREATE TABLE Registration (
     LicenseID INT NOT NULL,
     ClientID INT NOT NULL,
     StartDate DATE NOT NULL,
-    ExamStatus VARCHAR(10) NOT NULL,
+    ExamStatus VARCHAR(30) NOT NULL,
 
     FOREIGN KEY (LicenseID) REFERENCES License(ID),
     FOREIGN KEY (ClientID) REFERENCES Client(ID),
