@@ -14,7 +14,7 @@ def get_db():
     return g.db
 
 
-def close_db():
+def close_db(e=None):
     db = g.pop('db', None)
 
     if db is not None:
@@ -26,7 +26,7 @@ def init_db():
     cursor = db.cursor()
 
     with current_app.open_resource('db/schema.ddl.sql') as f:
-        cursor.execute(f.read().decode('utf8'))
+        cursor.execute(f.read().decode('utf8'), multi=True)
 
 
 @click.command('init-db')

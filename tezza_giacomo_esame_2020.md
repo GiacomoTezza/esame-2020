@@ -19,7 +19,7 @@ Scelgo quindi di implementare questa divisione tramite un login che permette al 
 ```
 License(ID, Name, Description)
 Client(ID, Name, Surname)
-Registration(LicenceID, ClientID, StartDate, ExamStatus)
+Registration(LicenseID, ClientID, StartDate, ExamStatus)
 ```
 
 

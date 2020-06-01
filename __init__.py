@@ -1,4 +1,5 @@
-from flask import flask
+from flask import Flask
+import random, string
 
 def create_app():
     app = Flask(__name__)
