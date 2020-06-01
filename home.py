@@ -9,7 +9,10 @@ bp = Blueprint('home', __name__)
 def index():
     db = get_db()
     cursor = db.cursor()
-    cursor.execute('SELECT Name, Description FROM License')
+    cursor.execute(
+        'SELECT Name, Description '
+        'FROM License'
+        )
 
     data = []
     for (name, description) in cursor:

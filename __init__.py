@@ -12,4 +12,7 @@ def create_app():
     app.register_blueprint(home.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from . import subscribers
+    app.register_blueprint(subscribers.bp)
+
     return app

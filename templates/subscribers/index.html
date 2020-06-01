@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Iscritti{% endblock %}
+
+{% block content %}
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-4">Iscritti</h1>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Cognome</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Corso</th>
+                    <th scope="col">Stato Esame</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subscriber in data %}
+                <tr>
+                    <td>{{ subscriber[0] }}</td>
+                    <td>{{ subscriber[1] }}</td>
+                    <td>{{ subscriber[2] }}</td>
+                    <td>{{ subscriber[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
