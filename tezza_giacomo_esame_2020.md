@@ -17,9 +17,9 @@ Scelgo quindi di implementare questa divisione tramite un login che permette al 
 
 ## Modello Logico
 ```
-license(ID, Name, Description)
-client(ID, Name, Surname)
-test(LicenceID, ClientID, DATE, PASSED)
+License(ID, Name, Description)
+Client(ID, Name, Surname)
+Registration(LicenceID, ClientID, StartDate, ExamStatus)
 ```
 
 
