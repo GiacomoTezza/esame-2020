@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}HomePage{% endblock %}
+
+{% block content %}
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-4">Chi siamo</h1>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-8 col-md-4 offset-sm-2">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia ipsum fringilla mi efficitur, at
+            dignissim nisi scelerisque. Fusce rutrum dictum diam, vitae semper mi scelerisque vel. Cras congue ornare
+            felis, sed euismod metus elementum eu. Nulla finibus dapibus consectetur. In hendrerit nibh at cursus
+            rhoncus. Fusce sit amet egestas ex. In egestas nisi eu finibus posuere. Donec felis purus, facilisis ac
+            ipsum vel, sodales auctor enim. </p>
+    </div>
+    <div class="col-sm-8 col-md-4">
+        <img src="static/img1.jpg" class="img-fluid" alt="Responsive image">
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-4">I nostri corsi</h1>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <div class="accordion" id="accordionCorsi">
+
+            {% for license in data %}
+            <div class="card">
+                <div class="card-header" id="heading{{ license[0] }}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapse{{ license[0] }}" aria-expanded="false" aria-controls="collapse{{ license[0] }}" style="text-decoration: none; color: black;">
+                            {{ license[0] }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapse{{ license[0] }}" class="collapse" aria-labelledby="heading{{ license[0] }}" data-parent="#accordionCorsi">
+                    <div class="card-body">
+                        {{ license[1] }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -27,6 +27,8 @@ def init_db():
 
     with current_app.open_resource('db/schema.ddl.sql') as f:
         cursor.execute(f.read().decode('utf8'), multi=True)
+    
+    cursor.close()
 
 
 def fill_db():
@@ -35,6 +37,8 @@ def fill_db():
 
     with current_app.open_resource('db/data.dump.sql') as f:
         cursor.execute(f.read().decode('utf8'), multi=True)
+    
+    cursor.close()
 
 
 @click.command('init-db')
