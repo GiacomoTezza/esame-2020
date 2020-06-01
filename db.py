@@ -21,11 +21,19 @@ def close_db(e=None):
         db.close()
 
 
-def execute_file_db(file_path):
+def init_db():
     db = get_db()
     cursor = db.cursor()
 
-    with current_app.open_resource(file_path) as f:
+    with current_app.open_resource('db/schema.ddl.sql') as f:
+        cursor.execute(f.read().decode('utf8'), multi=True)
+
+
+def fill_db():
+    db = get_db()
+    cursor = db.cursor()
+
+    with current_app.open_resource('db/data.dump.sql') as f:
         cursor.execute(f.read().decode('utf8'), multi=True)
 
 
@@ -33,7 +41,7 @@ def execute_file_db(file_path):
 @with_appcontext
 def init_db_command():
     """Clear the existing data and create new tables."""
-    execute_file_db('db/schema.ddl.sql')
+    init_db()
     click.echo('Database initialized.')
 
 
@@ -41,7 +49,7 @@ def init_db_command():
 @with_appcontext
 def fill_db_command():
     """Insert fake data, develop purpose."""
-    execute_file_db('db/data.dump.sql')
+    fill_db()
     click.echo('Database filled.')
 
 
