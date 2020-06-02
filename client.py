@@ -23,14 +23,14 @@ def index(client_id):
         p_data.append((c_id, name, surname))
 
     cursor.execute(
-        'SELECT L.Name, R.StartDate, R.ExamStatus '
+        'SELECT L.Name, R.StartDate, R.ExamStatus, R.ClientID, R.LicenseId '
         'FROM License AS L, Registration AS R '
         'WHERE R.ClientID = %s AND L.ID = R.LicenseID',
         (client_id,)
     )
     data = []
-    for (license, date, status) in cursor:
-        data.append((license, date, status))
+    for (license, date, status, cid, lid) in cursor:
+        data.append((license, date, status, cid, lid))
 
     cursor.execute(
         'SELECT ID, Name '

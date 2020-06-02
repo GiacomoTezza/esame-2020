@@ -30,7 +30,8 @@
             <tbody>
                 {% if data_len > 0 %}
                 {% for registration in data %}
-                <tr>
+                <tr class="exam" data-license-id="{{ registration[4] }}" data-client-id="{{ registration[3] }}"
+                    data-date-id="{{ registration[1] }}">
                     <td class="text-center">{{ registration[0] }}</td>
                     <td class="text-center">{{ registration[2] }}</td>
                     <td class="text-center">{{ registration[1] }}</td>
