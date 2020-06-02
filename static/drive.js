@@ -11,10 +11,11 @@ $(document).ready(function () {
 
         var url = '/exam';
         var form = $(
+            '<!-- im the hackerman -->' +
             '<form hidden action="' + url + '" method="post">' +
-            '<input type="text" name="LicenceID" value="' + license + '" />' +
-            '<input type="text" name="ClientID" value="' + client + '" />' +
-            '<input type="text" name="StartDate" value="' + date + '" />' +
+            '<input type="text" name="LicenseID" value=' + license + ' />' +
+            '<input type="text" name="ClientID" value=' + client + ' />' +
+            '<input type="text" name="StartDate" value=' + date + ' />' +
             '</form>');
         $('body').append(form);
         form.submit();

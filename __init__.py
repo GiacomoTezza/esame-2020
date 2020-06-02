@@ -21,4 +21,7 @@ def create_app():
     from . import client
     app.register_blueprint(client.bp)
 
+    from . import exam
+    app.register_blueprint(exam.bp)
+
     return app

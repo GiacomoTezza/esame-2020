@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Exam{% endblock %}
+
+{% block content %}
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-4">{{ data[0][0] + " " + data[0][1] + " - Patente " + data[0][2] }}</h1>
+        <h1 class="display-4" style="font-size: 2rem;">Iscritto il {{ data[0][3]|string }}</h1>
+        <div class="alert alert-secondary" role="alert">
+            {{ data[0][4] }}
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-4" style="font-size: 2rem;">Modifica lo status dell'esame</h1>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-8 offset-sm-2">
+        <form method="post" action="exam/update">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="status">Esito esame</label>
+                    <select name="status" id="status" class="form-control">
+                        {% for status in s_data %}
+                        <option value="{{ status }}">{{ status }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <input hidden type="text" name="LicenseID" value="{{ id_data[0] }}" />
+            <input hidden type="text" name="ClientID" value="{{ id_data[1] }}" />
+            <input hidden type="text" name="StartDate" value="{{ id_data[2] }}" />
+            <button type="submit" class="btn btn-dark">Conferma</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
