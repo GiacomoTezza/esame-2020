@@ -1,3 +1,6 @@
+## ITI G. Marconi, Verona
+### Esame di Stato di istruzione secondaria superiore a.s. 2019/2020
+### Indirizzo: ITIA - Informatica e Telecomunicazioni articolazione Informatica
 # ELABORATO INDIVIDUALE DI INFORMATICA E SISTEMI E RETI
 #### Classe: **5AI**, Alunno: **Tezza Giacomo**
 ----------
@@ -7,7 +10,12 @@
 
 Scelgo quindi di implementare questa divisione tramite un login che permette al personale della autoscuola di accedere alle funzionalità interne che non devono essere visibili da tutti. -->
 
-- Evito il CF per privacy.
+Dalla descrizione della realtà di interesse, ipotizzo le specifiche di cui l'autoscuola, ovvero il cliente, necessita.
+
+
+specifiche
+semplificazione
+scelte (stack)
 - Assumo non si possano conseguire più patenti contemporaneamente.
 
 

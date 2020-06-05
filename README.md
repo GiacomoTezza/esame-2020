@@ -2,3 +2,4 @@
 Esame di stato 2020 - Elaborato
 
 flask init-db
+flask fill-db
