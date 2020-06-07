@@ -32,23 +32,3 @@ CREATE TABLE Registration (
     FOREIGN KEY (ClientID) REFERENCES Client(ID),
     PRIMARY KEY (LicenseID, ClientID, StartDate)
 );
-
--- DELIMITER //
--- CREATE PROCEDURE addClient (IN ParamName VARCHAR(30), IN ParamSurname VARCHAR(30))
---     BEGIN
---         INSERT INTO Client (Name, Surname)
---         VALUES (ParamName, ParamSurname);
---     END;
--- //
-
--- CREATE PROCEDURE registerClient (IN ParamLicenceID INT, IN ParamClientID INT)
---     BEGIN
---         INSERT INTO Registration (LicenseID, ClientID, StartDate, ExamStatus)
---         VALUES (ParamLicenceID, ParamClientID, CURDATE(), "Non fissato")
---     END;
--- //
-
--- CREATE PROCEDURE insertNewClient ()
-
-
--- DELIMITER ;
