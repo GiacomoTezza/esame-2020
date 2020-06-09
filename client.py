@@ -25,7 +25,8 @@ def index(client_id):
     cursor.execute(
         'SELECT L.Name, R.StartDate, R.ExamStatus, R.ClientID, R.LicenseId '
         'FROM License AS L, Registration AS R '
-        'WHERE R.ClientID = %s AND L.ID = R.LicenseID',
+        'WHERE R.ClientID = %s AND L.ID = R.LicenseID '
+        'ORDER BY R.StartDate',
         (client_id,)
     )
     data = []

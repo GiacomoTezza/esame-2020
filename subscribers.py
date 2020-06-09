@@ -13,7 +13,8 @@ def index():
     cursor.execute(
         'SELECT C.ID, C.Surname, C.Name, L.Name, R.ExamStatus, R.StartDate '
         'FROM Client AS C '
-        'LEFT JOIN (License AS L, Registration AS R) ON (L.ID = R.LicenseID AND C.ID = R.ClientID)'
+        'LEFT JOIN (License AS L, Registration AS R) ON (L.ID = R.LicenseID AND C.ID = R.ClientID) '
+        'ORDER BY C.Surname'
         )
 
     data = []
