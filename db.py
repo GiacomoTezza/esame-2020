@@ -3,13 +3,15 @@ from pymysql.constants import CLIENT
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
+from os import getenv
 
 
 def get_db():
     if 'db' not in g:
         g.db = mariadb.connect(
-            user='root', 
-            password='123456', 
+            host=getenv('DB_HOST'),
+            user=getenv('DB_USER'),
+            password=getenv('DB_PWD'),
             database='drivingschool',
             client_flag=CLIENT.MULTI_STATEMENTS
         )
@@ -24,6 +26,15 @@ def close_db(e=None):
 
 
 def init_db():
+    instance = mariadb.connect(
+        host=getenv('DB_HOST'),
+        user=getenv('DB_USER'), 
+        password=getenv('DB_PWD')
+    )
+    cursor = instance.cursor()
+    cursor.execute('CREATE DATABASE IF NOT EXISTS drivingschool')
+    instance.close()
+
     db = get_db()
     cursor = db.cursor()
 
@@ -49,6 +60,7 @@ def fill_db():
 @with_appcontext
 def init_db_command():
     """Clear the existing data and create new tables."""
+    click.echo(getenv('DB_HOST'))
     init_db()
     click.echo('Database initialized.')
 

@@ -1,7 +1,10 @@
 from flask import Flask
 import random, string
+from dotenv import load_dotenv
 
 def create_app():
+    load_dotenv()
+
     app = Flask(__name__)
     app.secret_key = "".join( random.choices(string.ascii_lowercase, k=15))
 

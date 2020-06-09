@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS drivingschool;
-USE drivingschool;
-
 DROP TABLE IF EXISTS Registration;
 DROP TABLE IF EXISTS License;
 DROP TABLE IF EXISTS Client;
