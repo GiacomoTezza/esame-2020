@@ -28,3 +28,6 @@ def create_app():
     app.register_blueprint(exam.bp)
 
     return app
+
+
+app = create_app()

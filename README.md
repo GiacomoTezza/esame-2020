@@ -39,14 +39,13 @@ Check now the file `.env` end edit the username and password for your mariadb in
 
 Initialize the database
 ```
-cd ..
 flask init-db
 flask fill-db
 ```
 
 Run the application
 ```
-flask run
+python run.py
 ```
 
 Now you can open a browser and go on [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
