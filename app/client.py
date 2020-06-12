@@ -9,9 +9,13 @@ bp = Blueprint('client', __name__)
 
 @bp.route('/client/<client_id>', methods=('GET', 'POST'))
 def index(client_id):
+    """
+    Function called when the route in the decorator is visited
+    """
     db = get_db()
     cursor = db.cursor()
 
+    # Client informations
     cursor.execute(
         'SELECT ID, Name, Surname '
         'FROM Client '
@@ -22,6 +26,7 @@ def index(client_id):
     for (c_id, name, surname) in cursor:
         p_data.append((c_id, name, surname))
 
+    # Client's licenses courses informations
     cursor.execute(
         'SELECT L.Name, R.StartDate, R.ExamStatus, R.ClientID, R.LicenseId '
         'FROM License AS L, Registration AS R '
@@ -33,6 +38,7 @@ def index(client_id):
     for (license, date, status, cid, lid) in cursor:
         data.append((license, date, status, cid, lid))
 
+    # Licenses avaliable for registration
     cursor.execute(
         'SELECT ID, Name '
         'FROM License'
@@ -41,16 +47,18 @@ def index(client_id):
     for (l_id, license) in cursor:
         l_data.append((l_id, license))
 
+    # Handling of the POST request operations
     isErrorOccurred = False
     if request.method == 'POST':
         license = request.form['license']
-        isAllow = True
 
+        # If you have previous failed exam you can retry them
+        isAllow = True
         if len(data) > 0:
             for registration in data:
-                print(license)
-                if registration[0] == license and registration[2] not in ('Bocciato Teoria', 'Bocciato Pratica'):
+                if str(registration[4]) == license and registration[2] not in ('Bocciato Teoria', 'Bocciato Pratica'):
                     isAllow = False
+                    isErrorOccurred = True
 
         if isAllow:
             try:
