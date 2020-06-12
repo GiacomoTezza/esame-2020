@@ -30,5 +30,16 @@ def index():
             exam if exam is not None else '-', 
             date if date is not None else '-'
             ))
+    
+    cursor.execute(
+        'SELECT ID, Name '
+        'FROM License'
+    )
+    l_data = []
+    for (l_id, license) in cursor:
+        l_data.append((l_id, license))
+    
+    s_data = ['Non Fissato', 'Fissato', 'Promosso Teoria',
+              'Bocciato Teoria', 'Promosso Pratica', 'Bocciato Pratica']
 
-    return render_template('subscribers/index.html', data=data)
+    return render_template('subscribers/index.html', data=data, l_data=l_data, s_data=s_data)

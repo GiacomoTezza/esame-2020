@@ -10,7 +10,7 @@
 </div>
 <div class="row mt-3">
     <div class="col-sm-8 offset-sm-2">
-        <table class="table">
+        <table class="js-dynamitable table" id="table">
             <thead class="thead-dark">
                 <tr>
                     <th class="text-center" scope="col">Cognome</th>
@@ -19,16 +19,27 @@
                     <th class="text-center" scope="col">Stato Esame</th>
                     <th class="text-center" scope="col">Data Iscrizione</th>
                 </tr>
-            </thead>
-            <thead class="thead-dark">
+
                 <tr>
-                    <form>
-                        <th><input id="SurnameFilter" type="text" class="form-control" placeholder="Cognome"></th>
-                        <th><input id="NameFilter" type="text" class="form-control" placeholder="Nome"></th>
-                        <th><input id="LicenseFilter" type="text" class="form-control" placeholder="Corso"></th>
-                        <th><input id="StatusFilter" type="text" class="form-control" placeholder="Stato"></th>
-                        <th><input id="DateFilter" type="text" class="form-control" placeholder="Data"></th>
-                    </form>
+                    <th><input class="js-filter  form-control" type="text" value=""></th>
+                    <th><input class="js-filter  form-control" type="text" value=""></th>
+                    <th>
+                        <select class="js-filter  form-control">
+                            <option value=""></option>
+                            {% for license in l_data %}
+                            <option value="{{ license[1] }}">{{ license[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </th>
+                    <th>
+                        <select class="js-filter  form-control">
+                            <option value=""></option>
+                            {% for status in s_data %}
+                            <option value="{{ status }}">{{ status }}</option>
+                            {% endfor %}
+                        </select>
+                    </th>
+                    <th><input class="js-filter  form-control" type="text" value=""></th>
                 </tr>
             </thead>
             <tbody id="FilteredTable">

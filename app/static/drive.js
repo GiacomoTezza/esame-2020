@@ -22,40 +22,4 @@ $(document).ready(function () {
         $('body').append(form);
         form.submit();
     });
-
-    // Filters
-    $("#SurnameFilter").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#FilteredTable tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-
-    $("#NameFilter").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#FilteredTable tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-
-    $("#LicenseFilter").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#FilteredTable tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-
-    $("#StatusFilter").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#FilteredTable tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-
-    $("#DateFilter").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#FilteredTable tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
 });
