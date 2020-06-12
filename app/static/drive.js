@@ -1,8 +1,10 @@
 $(document).ready(function () {
+    // function that let table rows be clickable
     $(document).on('click', 'tr.subscriber', function () {
         var personID = $(this).attr('data-person-id');
         window.location.href = `/client/${personID}`;
     });
+
 
     $(document).on('click', 'tr.exam', function () {
         var license = $(this).attr('data-license-id');
@@ -19,7 +21,41 @@ $(document).ready(function () {
             '</form>');
         $('body').append(form);
         form.submit();
-        // $.post( "/exam", { LicenseID: license, ClientID: client, StartDate: date } );
-        // window.location.href = `/exam`;
+    });
+
+    // Filters
+    $("#SurnameFilter").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#FilteredTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#NameFilter").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#FilteredTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#LicenseFilter").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#FilteredTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#StatusFilter").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#FilteredTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#DateFilter").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#FilteredTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
 });

@@ -20,7 +20,18 @@
                     <th class="text-center" scope="col">Data Iscrizione</th>
                 </tr>
             </thead>
-            <tbody>
+            <thead class="thead-dark">
+                <tr>
+                    <form>
+                        <th><input id="SurnameFilter" type="text" class="form-control" placeholder="Cognome"></th>
+                        <th><input id="NameFilter" type="text" class="form-control" placeholder="Nome"></th>
+                        <th><input id="LicenseFilter" type="text" class="form-control" placeholder="Corso"></th>
+                        <th><input id="StatusFilter" type="text" class="form-control" placeholder="Stato"></th>
+                        <th><input id="DateFilter" type="text" class="form-control" placeholder="Data"></th>
+                    </form>
+                </tr>
+            </thead>
+            <tbody id="FilteredTable">
                 {% for subscriber in data %}
                 <tr class="subscriber" data-person-id="{{ subscriber[0] }}">
                     <td class="text-center">{{ subscriber[1] }}</td>
