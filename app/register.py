@@ -8,9 +8,13 @@ bp = Blueprint('register', __name__)
 
 @bp.route('/register', methods=('GET', 'POST'))
 def index():
+    """
+    Function called when the route in the decorator is visited
+    """
     db = get_db()
     cursor = db.cursor()
 
+    # Handling of the POST request operations
     if request.method == 'POST':
         name = request.form['name']
         surname = request.form['surname']

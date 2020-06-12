@@ -8,6 +8,9 @@ bp = Blueprint('subscribers', __name__)
 
 @bp.route('/subscribers')
 def index():
+    """
+    Function called when the route in the decorator is visited
+    """
     db = get_db()
     cursor = db.cursor()
     cursor.execute(

@@ -9,11 +9,15 @@ bp = Blueprint('exam', __name__)
 
 @bp.route('/exam', methods=('POST',))
 def index():
+    """
+    Function called when the route in the decorator is visited
+    """
     db = get_db()
     cursor = db.cursor()
     data = []
     id_data = []
 
+    # Handling of the POST request operations
     if request.method == 'POST':
         licenseID = request.form['LicenseID']
         clientID = request.form['ClientID']
@@ -38,6 +42,10 @@ def index():
 
 @bp.route('/exam/update', methods=('POST',))
 def update():
+    """
+    Function called when the route in the decorator is called with POST
+    Route only for requests and handling of the update
+    """
     db = get_db()
     cursor = db.cursor()
     

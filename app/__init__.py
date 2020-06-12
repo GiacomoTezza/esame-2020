@@ -1,8 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template
 import random, string
 from dotenv import load_dotenv
 
 def create_app():
+    """
+    Function that loads the enviroments variables and
+    registers the blueprints of the pages
+    """
     load_dotenv()
 
     app = Flask(__name__)
@@ -10,6 +14,7 @@ def create_app():
 
     from . import db
     db.init_app(app)
+
 
     from . import home
     app.register_blueprint(home.bp)
@@ -26,6 +31,11 @@ def create_app():
 
     from . import exam
     app.register_blueprint(exam.bp)
+
+    # 404 error handler
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('error/index.html', message="Error 404: Page not found")
 
     return app
 
